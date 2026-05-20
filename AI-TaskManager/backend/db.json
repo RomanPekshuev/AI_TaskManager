@@ -1,4 +1,13 @@
 {
+  "users": [
+    {
+      "id": 1779279149055,
+      "username": "Роман",
+      "email": "pekshuyev@internet.ru",
+      "password": "$2b$10$SJa1Y44OGTeO52ebnjsceuz8SXH3EbzPqzHdFiaKCW7ArbsGOAGyy",
+      "createdAt": "2026-05-20T12:12:29.055Z"
+    }
+  ],
   "tasks": [
     {
       "id": 1,
@@ -16,5 +25,7 @@
       "deadline": "2026-05-22",
       "completed": true
     }
-  ]
+  ],
+  "tags": [],
+  "task_tags": []
 }

@@ -17,6 +17,8 @@
     </nav>
   </header>
 
+  <button onclick="logout()" class="btn-cancel" style="background:#e74c3c; color:white; border:none; padding:0.8rem 1.5rem; border-radius:6px; cursor:pointer;">Выйти из аккаунта</button>
+
   <main>
     <h2>Настройки</h2>
 
@@ -84,6 +86,9 @@
 
   <script type="module">
     import { getTasks } from './js/api.js';
+
+    import { logout } from './js/api.js';
+    window.logout = logout; 
 
     async function loadStats() {
       try {

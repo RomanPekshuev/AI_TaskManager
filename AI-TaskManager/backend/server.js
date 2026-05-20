@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const taskRoutes = require('./routes/task');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = 3000;
@@ -13,6 +14,8 @@ app.use('/api/tasks', taskRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'AI Task Manager API is running!' });
 });
+
+app.use('/api/auth', authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

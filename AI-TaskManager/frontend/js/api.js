@@ -1,36 +1,49 @@
-// Базовый URL нашего бэкенда
 const API_URL = 'http://localhost:3000/api/tasks';
 
+function getHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  };
+}
+
 export async function getTasks() {
-  const response = await fetch(API_URL);
-  if (!response.ok) throw new Error('Не удалось загрузить задачи');
-  return await response.json();
+  const res = await fetch(API_URL, { headers: getHeaders() });
+  if (!res.ok) throw new Error('Не удалось загрузить задачи');
+  return await res.json();
 }
 
 export async function createTask(taskData) {
-  const response = await fetch(API_URL, {
+  const res = await fetch(API_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders(),
     body: JSON.stringify(taskData)
   });
-  if (!response.ok) throw new Error('Не удалось создать задачу');
-  return await response.json();
+  if (!res.ok) throw new Error('Не удалось создать задачу');
+  return await res.json();
 }
 
 export async function updateTask(id, taskData) {
-  const response = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: getHeaders(),
     body: JSON.stringify(taskData)
   });
-  if (!response.ok) throw new Error('Не удалось обновить задачу');
-  return await response.json();
+  if (!res.ok) throw new Error('Не удалось обновить задачу');
+  return await res.json();
 }
 
 export async function deleteTask(id) {
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: 'DELETE'
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE',
+    headers: getHeaders()
   });
-  if (!response.ok) throw new Error('Не удалось удалить задачу');
-  return await response.json();
+  if (!res.ok) throw new Error('Не удалось удалить задачу');
+  return await res.json();
+}
+
+export function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = 'login.html';
 }
