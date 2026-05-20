@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Изучить HTML семантику",
+      "description": "Разобрать теги header, main, footer",
+      "priority": "high",
+      "deadline": "2026-05-20",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Настроить Git",
+      "description": "Создать репозиторий и сделать коммит",
+      "priority": "medium",
+      "deadline": "2026-05-22",
+      "completed": true
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Task Manager - Создать задачу</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>AI Task Manager</h1>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="create.html" class="active">Создать</a>
+      <a href="settings.html">Настройки</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Создание новой задачи</h2>
+
+    <form id="create-form" class="task-form">
+      <div class="form-group">
+        <label for="title">Название задачи *</label>
+        <input 
+          type="text" 
+          id="title" 
+          name="title" 
+          placeholder="Например: Изучить JavaScript" 
+          required 
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Описание</label>
+        <textarea 
+          id="description" 
+          name="description" 
+          rows="4" 
+          placeholder="Опиши, что нужно сделать..."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Приоритет</label>
+        <select id="priority" name="priority">
+          <option value="low">Низкий</option>
+          <option value="medium" selected>Средний</option>
+          <option value="high">Высокий</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">Дедлайн</label>
+        <input type="date" id="deadline" name="deadline" />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Создать задачу</button>
+        <a href="index.html" class="btn-cancel">Отмена</a>
+      </div>
+    </form>
+
+    <div id="form-message" class="message"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 AI Task Manager. Учебный проект.</p>
+  </footer>
+
+  <script type="module">
+    import { createTask } from './js/api.js';
+
+    const form = document.getElementById('create-form');
+    const messageDiv = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        priority: document.getElementById('priority').value,
+        deadline: document.getElementById('deadline').value
+      };
+
+      try {
+        messageDiv.textContent = 'Создание...';
+        messageDiv.className = 'message loading';
+        
+        await createTask(formData);
+        
+        messageDiv.textContent = 'Задача успешно создана!';
+        messageDiv.className = 'message success';
+        
+        form.reset();
+        
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 1500);
+        
+      } catch (error) {
+        console.error('Ошибка:', error);
+        messageDiv.textContent = 'Ошибка при создании задачи';
+        messageDiv.className = 'message error';
+      }
+    });
+  </script>
+
+</body>
+</html>

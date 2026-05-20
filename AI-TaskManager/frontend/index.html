@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Task Manager - Главная</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>AI Task Manager</h1>
+    <nav>
+      <a href="index.html" class="active">Главная</a>
+      <a href="create.html">Создать</a>
+      <a href="settings.html">Настройки</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Мои задачи</h2>
+
+    <div class="filters">
+      <button data-filter="all" class="active">Все</button>
+      <button data-filter="active">Активные</button>
+      <button data-filter="completed">Завершённые</button>
+    </div>
+
+    <div id="task-list" class="task-list">
+      <p>Загрузка задач...</p>
+    </div>
+
+    <a href="create.html" class="btn-add">+ Добавить задачу</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 AI Task Manager. Учебный проект.</p>
+  </footer>
+
+  <script src="js/api.js" type="module"></script>
+  <script src="js/app.js" type="module"></script>
+</body>
+</html>
